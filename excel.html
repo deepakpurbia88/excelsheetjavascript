@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style type="text/css">
+	.myclass{
+		display:inline;
+	}
+</style>
+</head>
+
+<body>
+	N Value: <input type="text" id="nId"/>
+	<br/>
+	M Value: <input type="text" id="mId"/>
+	<br/>
+	<input type="button" onclick="generateSheet()" value="Generate"/>
+	<br/>
+	<br/>
+	<div id="firstDiv"></div>
+
+</body>
+</html>
+<script>
+	function generateSheet(){
+		var row1 = parseInt(document.getElementById("nId").value); // 5
+		var col1 = parseInt(document.getElementById("mId").value); // 10
+
+		for(var i =0; i<=row1;i++){
+
+			var div = document.createElement("div");
+			div.setAttribute("id","row"+i);
+
+			for(var j = 0 ; j<=col1 ;j++){
+
+
+				var tup = document.createElement("input");
+				tup.setAttribute("type","text");
+				tup.setAttribute("width","10px");
+				tup.setAttribute('class', 'myclass');
+
+				/*if(i == 0 || j == 0){
+										
+				}*/
+
+				if(i==0 && j==0){
+				tup.setAttribute('disabled',true);
+					
+				}
+				if(i==0 && j>0){
+				tup.setAttribute('disabled',true);
+				tup.setAttribute("value", (((j-1)+10).toString(36)).toUpperCase());	
+				}
+
+
+				if(j==0 && i>0){
+				tup.setAttribute('disabled',true);
+				tup.setAttribute("value",i);
+					
+				}
+
+
+
+				document.getElementById('firstDiv').appendChild(div)
+				document.getElementById("row"+i).appendChild(tup);
+
+			}
+			var linebreak = document.createElement("br");
+			document.getElementById("row"+i).appendChild(linebreak);
+			//document.body.appendChild(linebreak);			
+
+		}
+
+		
+	}
+</script>
